@@ -12,6 +12,33 @@ namespace ThePathfinder
     public enum Direction { Down, Left, Up, Right };
 
 
+
+    [System.Serializable]
+    public struct Coord
+    {
+        public Coord(int c, int r) {col = c; row = r;}
+        [SerializeField] public int col;
+        [SerializeField] public int row;
+        
+        public static bool operator ==(Coord a, Coord b) {return a.Equals(b);}
+        public static bool operator !=(Coord a, Coord b) {return !(a == b);}
+
+        public override int GetHashCode() => base.GetHashCode();
+
+        public override bool Equals(object obj)
+        {
+            if(obj == null) return false;
+            if (!(obj is Coord)) return false;
+            Coord coord = (Coord) obj;
+            return col == coord.col && row == coord.row;
+        }
+
+        public override string ToString() => "[" + col + ", " + row + "]";
+    }
+
+
+
+
     public static class Utility
     {
 
