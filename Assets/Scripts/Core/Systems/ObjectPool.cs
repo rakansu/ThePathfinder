@@ -60,7 +60,7 @@ public class ObjectPool
 	GameObject AllocateInstance(){
 		GameObject instance = GameObject.Instantiate(prefab, Vector3.one * 1000, Quaternion.identity) as GameObject;
 		// ISpawnable spawnable = instance.GetComponent<ISpawnable> ();
-		instance.transform.SetParent (folder);
+		instance.transform.SetParent (folder,false);
 		instance.SetActive (false);
 		pool.Add (instance);
 		return instance;

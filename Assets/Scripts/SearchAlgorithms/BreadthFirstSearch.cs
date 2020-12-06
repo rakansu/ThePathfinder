@@ -36,7 +36,6 @@ public static class BreadthFirstSearch
         while(queue.Count > 0)
         {
             next_square = queue.Dequeue();
-            visited.Add(next_square);
 
 
             List<Square> adjacent_squares = map.GetAdjacent8(next_square.GetCoord());
@@ -44,7 +43,10 @@ public static class BreadthFirstSearch
             {
                 if(adjacent_squares[i].parent == null) adjacent_squares[i].parent = next_square;   
                 if(!visited.Contains(adjacent_squares[i]))
+                {
                     queue.Enqueue(adjacent_squares[i]);
+                    visited.Add(adjacent_squares[i]);
+                }
             }
 
             // Target Found:
