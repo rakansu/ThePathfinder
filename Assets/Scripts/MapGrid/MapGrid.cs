@@ -7,31 +7,25 @@ public class MapGrid : MonoBehaviour
 {
     private Square[][] grid;
 
-    [SerializeField] int COLUMN_SIZE = 20;
-    [SerializeField] int ROW_SIZE    = 15;
 
 
     void Awake()
     {
         // Initialize Grid:
-        grid = new Square[COLUMN_SIZE][];
-        for(int i = 0; i < COLUMN_SIZE; i++) 
-            grid[i] = new Square[ROW_SIZE];
+        grid = new Square[AppConfig.COLUMN_SIZE][];
+        for(int i = 0; i < AppConfig.COLUMN_SIZE; i++) 
+            grid[i] = new Square[AppConfig.ROW_SIZE];
 
-        for(int c = 0; c < COLUMN_SIZE; c++)
+        for(int c = 0; c < AppConfig.COLUMN_SIZE; c++)
         {
-            for(int r = 0; r < ROW_SIZE; r++)
+            for(int r = 0; r < AppConfig.ROW_SIZE; r++)
             {
-                int id = c + r * COLUMN_SIZE;
+                int id = c + r * AppConfig.COLUMN_SIZE;
                 grid[c][r] = new Square(id,c,r);
             }
         }
     }
 
-
-    public int GetColumnCount() => COLUMN_SIZE;
-
-    public int GetRowCount() => ROW_SIZE;
 
 
     /// <summary>
@@ -48,7 +42,7 @@ public class MapGrid : MonoBehaviour
     /// <summary>
     /// Retruns true if the coordinate within the bounds of the matrix
     /// </summary>
-    public bool IsValid(int col, int row) =>  (0 <= col && col < COLUMN_SIZE) && (0 <= row && row < ROW_SIZE);
+    public bool IsValid(int col, int row) =>  (0 <= col && col < AppConfig.COLUMN_SIZE) && (0 <= row && row < AppConfig.ROW_SIZE);
 
 
     /// <summary>
@@ -90,9 +84,9 @@ public class MapGrid : MonoBehaviour
 
     public void ResetMap()
     {
-        for(int c = 0; c < COLUMN_SIZE; c++)
+        for(int c = 0; c < AppConfig.COLUMN_SIZE; c++)
         {
-            for(int r = 0; r < ROW_SIZE; r++)
+            for(int r = 0; r < AppConfig.ROW_SIZE; r++)
             {
                 grid[c][r].parent = null;
             }

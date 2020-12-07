@@ -8,7 +8,6 @@ public class PathDrawerView : View
     private List<GameObject> activeDotTiles = new List<GameObject>();
     private ObjectPool dotTilePool;
 
-    [SerializeField] GridView gridView;
     [SerializeField] GameObject dotTilePrefab;
 
     void Awake()
@@ -23,7 +22,7 @@ public class PathDrawerView : View
         for(int i = 0; i < path.Count-1; i++)
         {
             GameObject dotTile = dotTilePool.GetInstance();
-            dotTile.GetComponent<RectTransform>().localPosition = gridView.GetMappedPosition(path[i].col, path[i].row);
+            dotTile.GetComponent<RectTransform>().localPosition = Utility.GetPositionInPixel(path[i].col, path[i].row);
             dotTile.SetActive(true);
             activeDotTiles.Add(dotTile);
         }

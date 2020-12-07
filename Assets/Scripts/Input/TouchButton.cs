@@ -64,10 +64,6 @@ public class TouchButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
 
 
-
-
-
-
     public bool HasHeldFor(float sec)
     {
         return (elapsedTime >= sec);

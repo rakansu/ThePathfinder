@@ -7,10 +7,19 @@ namespace ThePathfinder
     public delegate void GameEvent();
     public delegate void JobAction(float timeStamp, bool isCompleted);
 
+    public static class AppConfig
+    {
+        public static int COLUMN_SIZE = 29;
+        public static int ROW_SIZE    = 13;
+        public static float tileWidth  = 25f;
+        public static float tileHeight = 25f;
+    }
+
+    [System.Serializable]
+    public enum MouseKey{Left, Right, Middle};
 
     [System.Serializable]
     public enum Direction { Down, Left, Up, Right };
-
 
 
     [System.Serializable]
@@ -64,7 +73,25 @@ namespace ThePathfinder
             if(component == null) component = current.AddComponent<T>();
             return component;
         }
+        
+        public static Vector2 GetPositionInPixel(Coord coord) => GetPositionInPixel(coord.col,coord.row);
+
+        public static Vector2 GetPositionInPixel(int c, int r)
+        {
+            int columns = AppConfig.COLUMN_SIZE;
+            int rows = AppConfig.ROW_SIZE;
+            float x_pos =  ( (-columns + 1) * AppConfig.tileWidth  * 0.5f) + c * AppConfig.tileWidth;
+            float y_pos =  ( (rows - 1)     * AppConfig.tileHeight * 0.5f) - r * AppConfig.tileHeight;
+            // Position in pixels:
+            return new Vector2(x_pos,y_pos);
+        }
+
+
     }
+
+
+
+
 
 }
 

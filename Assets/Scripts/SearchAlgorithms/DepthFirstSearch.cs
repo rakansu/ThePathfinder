@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using ThePathfinder;
 
-public static class BreadthFirstSearch 
+public static class DepthFirstSearch
 {
+
 
     public static List<Coord> GetPath(Coord A, Coord B, MapGrid map)
     {
@@ -62,7 +63,6 @@ public static class BreadthFirstSearch
 
         return path;
     }
-
 
 
 
