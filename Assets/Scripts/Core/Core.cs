@@ -16,6 +16,15 @@ namespace ThePathfinder
     }
 
     [System.Serializable]
+    public enum SquareData
+    {
+        Empty,
+        PointA,
+        PointB,
+        Wall
+    }
+
+    [System.Serializable]
     public enum MouseKey{Left, Right, Middle};
 
     [System.Serializable]
@@ -86,6 +95,24 @@ namespace ThePathfinder
             return new Vector2(x_pos,y_pos);
         }
 
+        /// <summary>
+        /// Returns true if the position within the grid bounds
+        /// </summary>
+        public static bool IsWithinBounds(Vector2 positon)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Returns a coordinate that corresponds to a position on screen.
+        /// If position is out of grid bound, then coordinates are clamped to the closest coordinate
+        /// </summary>
+        public static Coord GetCoordOfPixelPosition(Vector2 position)
+        {
+            int c = 0;
+            int r = 0;
+            return new Coord(c,r);
+        }
 
     }
 

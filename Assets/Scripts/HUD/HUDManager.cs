@@ -11,7 +11,6 @@ public class HUDManager : MonoBehaviour
 
     [Header("-- HUD CONFIG --")]
     [SerializeField] Activity start_activity;
-    [SerializeField] bool startWithLoadScreenTransition;
 
 
 

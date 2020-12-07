@@ -14,7 +14,7 @@ public class MapGridView : View
 
 
 
-    void Awake()
+    void Start()
     {
         mapGrid = GetComponent<MapGrid>();
 
@@ -31,7 +31,7 @@ public class MapGridView : View
                 TileView tile = tilePool.GetInstance().GetComponent<TileView>();
                 // Position in pixels:
                 Vector2 position = Utility.GetPositionInPixel(c,r);
-                tile.Initialize(position);
+                tile.Initialize(matrix[c][r], position);
                 tile.gameObject.SetActive(true);
             }
         }

@@ -28,11 +28,14 @@ public class PathDrawerView : View
         }
     }
 
+
+
     private void ResetDotTiles()
     {
         for(int i = 0; i < activeDotTiles.Count; i++)
             activeDotTiles[i].SetActive(false);
         activeDotTiles.Clear();
     }
+
 
 }

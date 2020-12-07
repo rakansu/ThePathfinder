@@ -5,9 +5,11 @@ using ThePathfinder;
 
 public class Square
 {
+
     private int ID;
     private int col;
     private int row;
+    private SquareData data;
 
     public Square parent;
 
@@ -19,6 +21,10 @@ public class Square
         this.col = col;
         this.row = row;
     }
+
+    public void SetData(SquareData data) => this.data = data;
+
+    public SquareData GetData() => data;
 
     public int GetID => ID;
 
