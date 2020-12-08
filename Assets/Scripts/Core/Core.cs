@@ -9,10 +9,19 @@ namespace ThePathfinder
 
     public static class AppConfig
     {
+        public static Algorithm searchAlgorithm = Algorithm.DFS;
         public static int COLUMN_SIZE = 29;
         public static int ROW_SIZE    = 13;
         public static float tileWidth  = 25f;
         public static float tileHeight = 25f;
+    }
+
+    public enum Algorithm
+    {
+        DFS,
+        BFS,
+        Dijkstra,
+        AStar
     }
 
     [System.Serializable]
