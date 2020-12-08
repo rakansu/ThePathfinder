@@ -11,8 +11,13 @@ public class Square
     private int row;
     private SquareData data;
 
-    public bool isVisited = false;
     public Square parent;
+    public bool isVisited = false;
+
+    public int G_cost;  // cost from START to THIS NODE
+    public int H_cost;  // cost from END to THIS NODE
+        
+    public int GetF_Cost(){ return G_cost + H_cost;}
 
 
 
@@ -38,3 +43,4 @@ public class Square
     public bool IsWalkable() => data != SquareData.Wall;
 
 }
+

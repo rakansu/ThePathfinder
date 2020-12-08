@@ -14,7 +14,6 @@ public static class BreadthFirstSearch
         if(isVisualize) SearchVisualizerView.current.Reset();
         Square start  = map.GetGridMatrix()[A.col][A.row];
         Square target = map.GetGridMatrix()[B.col][B.row];
-        HashSet<Square> visited = new HashSet<Square>();
         Queue<Square> queue = new Queue<Square>();
 
         // if start is the target:
@@ -26,7 +25,6 @@ public static class BreadthFirstSearch
 
 
         queue.Enqueue(start);
-        visited.Add(start);
         Square next_square;
         float visualizeDelay = 0f;
         float delayInterval = 0.01f;
@@ -42,10 +40,10 @@ public static class BreadthFirstSearch
             for(int i = 0; i < adjacent_squares.Count; i++)
             {
                 if(adjacent_squares[i].parent == null) adjacent_squares[i].parent = next_square;
-                if(!visited.Contains(adjacent_squares[i]))
+                if(!adjacent_squares[i].isVisited)
                 {
                     queue.Enqueue(adjacent_squares[i]);
-                    visited.Add(adjacent_squares[i]);
+                    adjacent_squares[i].isVisited = true;
                     if(isVisualize) SearchVisualizerView.current.VisualizeVisit(adjacent_squares[i], visualizeDelay);
                 }
             }
@@ -67,8 +65,6 @@ public static class BreadthFirstSearch
                 return path;
             }
         }
-        
-
 
         return path;
     }
