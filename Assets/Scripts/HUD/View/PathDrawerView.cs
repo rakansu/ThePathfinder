@@ -16,15 +16,31 @@ public class PathDrawerView : View
     }
 
 
+    public void Reset()
+    {
+        ResetDotTiles();
+    }
+
+
     public void DrawPath(List<Coord> path)
     {
         ResetDotTiles();
+        float delay = 0f;
+        float intervalDelay = 0.1f;
+        int index = 0;
         for(int i = 0; i < path.Count-1; i++)
         {
-            GameObject dotTile = dotTilePool.GetInstance();
-            dotTile.GetComponent<RectTransform>().localPosition = Utility.GetPositionInPixel(path[i].col, path[i].row);
-            dotTile.SetActive(true);
-            activeDotTiles.Add(dotTile);
+            JobAction scheduledAction = (float timeStampe, bool isComplete) =>
+            {
+                GameObject dotTile = dotTilePool.GetInstance();
+                dotTile.GetComponent<RectTransform>().localPosition = Utility.GetPositionInPixel(path[index].col, path[index].row);
+                dotTile.SetActive(true);
+                activeDotTiles.Add(dotTile);
+                index++;   
+            };
+
+            JobSystem.ScheduleUntil(scheduledAction, delay);
+            delay += intervalDelay;
         }
     }
 

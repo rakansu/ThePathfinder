@@ -51,14 +51,18 @@ public class MapGrid : MonoBehaviour
     public List<Square> GetAdjacent4(Coord current_coord)
     {
         List<Square> adjacent_coords = new List<Square>();
+
+        int c = current_coord.col;
+        int r = current_coord.row;
+
         // Top:
-        if(IsValid(current_coord.col, current_coord.row - 1)) adjacent_coords.Add(grid[current_coord.col][current_coord.row - 1]);
+        if(IsValid(c, r - 1) && grid[c][r].IsWalkable()) adjacent_coords.Add(grid[c][r - 1]);
         // Bottom:
-        if(IsValid(current_coord.col, current_coord.row + 1)) adjacent_coords.Add(grid[current_coord.col][current_coord.row + 1]);
+        if(IsValid(c, r + 1) && grid[c][r].IsWalkable()) adjacent_coords.Add(grid[c][r + 1]);
         // Left:
-        if(IsValid(current_coord.col - 1, current_coord.row)) adjacent_coords.Add(grid[current_coord.col - 1][current_coord.row]);
+        if(IsValid(c - 1, r) && grid[c][r].IsWalkable()) adjacent_coords.Add(grid[c - 1][r]);
         // Right:
-        if(IsValid(current_coord.col + 1, current_coord.row)) adjacent_coords.Add(grid[current_coord.col + 1][current_coord.row]);
+        if(IsValid(c + 1, r) && grid[c][r].IsWalkable()) adjacent_coords.Add(grid[c + 1][r]);
         return adjacent_coords;
     }
 
@@ -75,7 +79,7 @@ public class MapGrid : MonoBehaviour
             {
                 if(c == current_coord.col && r == current_coord.row) continue;
                 if(!IsValid(c,r)) continue;
-                adjacent_coords.Add(grid[c][r]);
+                if(grid[c][r].IsWalkable()) adjacent_coords.Add(grid[c][r]);
             }
         }
         return adjacent_coords;

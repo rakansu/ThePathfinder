@@ -34,4 +34,6 @@ public class Square
 
     public Coord GetCoord() => new Coord(col,row);
 
+    public bool IsWalkable() => data != SquareData.Wall;
+
 }

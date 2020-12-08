@@ -36,12 +36,18 @@ public class TileDrawerView : MonoBehaviour
             case SquareData.PointA:
                 pointA.gameObject.SetActive(true);
                 pointA.localPosition = tile.GetPixelPosition();
+                tile.SetIcon(pointA);
                 break;
             case SquareData.PointB:
                 pointB.gameObject.SetActive(true);
                 pointB.localPosition = tile.GetPixelPosition();
+                tile.SetIcon(pointB);
                 break;
             case SquareData.Wall:
+                RectTransform wall = wallTilePool.GetInstance().GetComponent<RectTransform>();
+                wall.localPosition = tile.GetPixelPosition();
+                wall.gameObject.SetActive(true);
+                tile.SetIcon(wall);
                 break;
         }
     }

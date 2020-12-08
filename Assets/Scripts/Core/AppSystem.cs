@@ -4,6 +4,8 @@ using UnityEngine;
 using ThePathfinder;
 public class AppSystem : MonoBehaviour
 {
+    public static float path_delay = 0f;
+
 
     void Update()
     {

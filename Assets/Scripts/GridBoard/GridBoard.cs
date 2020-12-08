@@ -9,6 +9,7 @@ public class GridBoard : MonoBehaviour
 
     public delegate void TileEvent(TileView tile);
     public static event TileEvent onUpdateTile;
+    
 
     public enum DrawState
     {
@@ -39,6 +40,7 @@ public class GridBoard : MonoBehaviour
         switch(current_drawstate)
         {
             case DrawState.Erase:
+                ProcessErasingTile(tile);
                 break;
             case DrawState.PointA: 
                 ProcessDrawingPoint(pointA_tile, tile, SquareData.PointA);
@@ -49,8 +51,15 @@ public class GridBoard : MonoBehaviour
                 pointB_tile = tile;
                 break;
             case DrawState.Wall: 
+                ProcessDrawingWall(tile);
                 break;
         }
+    }
+
+    private void ProcessErasingTile(TileView tile)
+    {
+        tile.GetSquare().SetData(SquareData.Empty);
+        onUpdateTile?.Invoke(tile);
     }
 
     private void ProcessDrawingPoint(TileView tilePoint, TileView newTile, SquareData data)
@@ -60,6 +69,14 @@ public class GridBoard : MonoBehaviour
         onUpdateTile?.Invoke(tilePoint);
         onUpdateTile?.Invoke(newTile);
         current_drawstate = DrawState.None;
+    }
+
+    private void ProcessDrawingWall(TileView tile)
+    {
+        tile.GetSquare().SetData(SquareData.Empty);
+        onUpdateTile?.Invoke(tile);
+        tile.GetSquare().SetData(SquareData.Wall);
+        onUpdateTile?.Invoke(tile);
     }
 
 
