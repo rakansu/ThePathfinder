@@ -33,7 +33,7 @@ public class MainActivity : Activity
     {
         if(!GridBoard.current.IsPathSet()) return;
         pathDrawer.Reset();
-        List<Coord> path = BreadthFirstSearch.GetPath(GridBoard.current.GetPointACoord(), GridBoard.current.GetPointBCoord(), mapGrid, true);
+        List<Coord> path = DepthFirstSearch.GetPath(GridBoard.current.GetPointACoord(), GridBoard.current.GetPointBCoord(), mapGrid, true);
         JobAction scheduledAction = (float timeStamp, bool isCompleted) =>
         {
             pathDrawer.DrawPath(path);

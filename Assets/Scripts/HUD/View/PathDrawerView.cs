@@ -26,7 +26,7 @@ public class PathDrawerView : View
     {
         ResetDotTiles();
         float delay = 0f;
-        float intervalDelay = 0.1f;
+        float intervalDelay = 0.001f;
         int index = 0;
         for(int i = 0; i < path.Count-1; i++)
         {

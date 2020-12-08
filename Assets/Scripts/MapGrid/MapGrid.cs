@@ -93,6 +93,7 @@ public class MapGrid : MonoBehaviour
             for(int r = 0; r < AppConfig.ROW_SIZE; r++)
             {
                 grid[c][r].parent = null;
+                grid[c][r].isVisited = false;
             }
         }
     }

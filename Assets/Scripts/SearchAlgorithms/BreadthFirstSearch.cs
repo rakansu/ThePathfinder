@@ -31,6 +31,8 @@ public static class BreadthFirstSearch
         float visualizeDelay = 0f;
         float delayInterval = 0.01f;
 
+        if(isVisualize) SearchVisualizerView.current.VisualizeVisit(start, visualizeDelay);
+
         while(queue.Count > 0)
         {
             next_square = queue.Dequeue();

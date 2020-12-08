@@ -11,6 +11,7 @@ public class Square
     private int row;
     private SquareData data;
 
+    public bool isVisited = false;
     public Square parent;
 
 
